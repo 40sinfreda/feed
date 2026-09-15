@@ -1,5 +1,6 @@
 (function () {
   const LS_THEME = "feed_theme";
+  const ASSET_V = "7";
   let deferredPrompt = null;
 
   function currentTheme() {
@@ -22,19 +23,21 @@
   applyTheme(currentTheme());
 
   (function applyOfficialLogo() {
-    if (!document.querySelector('link[href="logo-fix.css"]')) {
+    if (!document.querySelector('link[href*="logo-fix.css"]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "logo-fix.css";
+      link.href = "logo-fix.css?v=" + ASSET_V;
       document.head.appendChild(link);
     }
     document.querySelectorAll(".header-icon img, .splash-corner img").forEach(function (img) {
-      img.src = "logo-mark.svg";
+      img.src = "logo-mark-v7.svg?v=" + ASSET_V;
       img.style.objectFit = "contain";
       img.alt = "Itzkovich Group";
     });
     document.querySelectorAll(".splash-logo img").forEach(function (img) {
-      img.src = "logo.svg";
+      img.src = "logo-full-v7.svg?v=" + ASSET_V;
+      img.style.width = "100%";
+      img.style.height = "auto";
       img.style.objectFit = "contain";
       img.alt = "Itzkovich Group";
     });
@@ -129,7 +132,11 @@
   }
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js").catch(function () {});
+    navigator.serviceWorker.getRegistrations().then(function (regs) {
+      return Promise.all(regs.map(function (r) { return r.update(); }));
+    }).then(function () {
+      return navigator.serviceWorker.register("./sw.js?v=" + ASSET_V);
+    }).catch(function () {});
   }
   if (!window.__splashStarted) { window.__splashStarted = true; startSplash(); }
 })();
