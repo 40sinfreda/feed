@@ -3,7 +3,10 @@ html[data-theme=red]{--primary:#b71c1c;--primary-dark:#7f1010;--primary-mid:#d32
 html[data-theme=blue]{--primary:#0d47a1;--primary-dark:#06285f;--primary-mid:#1976d2;--primary-soft:#e3f2fd;--bg:#eef3f8;--border:#d7e0ea}
 html[data-theme=green]{--primary:#1b5e20;--primary-dark:#0d3b12;--primary-mid:#2e7d32;--primary-soft:#e8f5e9}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+html{min-height:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;background-color:var(--bg);background-image:url("pellets.svg");background-repeat:repeat;background-size:180px 180px;color:var(--text);line-height:1.5;min-height:100vh;padding-bottom:calc(72px + env(safe-area-inset-bottom));position:relative}
+body::before{content:"";position:fixed;inset:0;background:var(--bg);opacity:.72;pointer-events:none;z-index:0}
+body>*{position:relative;z-index:1}
 .header{background:linear-gradient(160deg,var(--primary),var(--primary-dark));color:#fff;padding:18px 20px 20px;padding-top:calc(18px + env(safe-area-inset-top));position:sticky;top:0;z-index:100}
 .header-content{display:flex;align-items:center;gap:12px}
 .header-icon{width:42px;height:42px;background:transparent;border-radius:12px;overflow:visible;flex-shrink:0}
@@ -18,7 +21,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-ser
 .nav-btn .icon{font-size:1.35rem}
 .screen{display:none;padding:16px;max-width:520px;margin:0 auto}
 .screen.active{display:block}
-.card{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+.card{background:rgba(255,255,255,.92);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
 .card-title{font-weight:700;font-size:.95rem;margin-bottom:14px;color:var(--primary-dark)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border:0;border-radius:var(--radius-sm);font-size:.95rem;font-weight:600;cursor:pointer;width:100%;font-family:inherit}
 .btn-primary{background:linear-gradient(180deg,var(--primary-mid),var(--primary));color:#fff}
@@ -59,7 +62,7 @@ input,select,textarea{width:100%;padding:13px 14px;border:1.5px solid var(--bord
 .hero-card .btn{background:#fff;color:var(--primary-dark)}
 .toast{position:fixed;bottom:calc(80px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(20px);background:#1c1c1c;color:#fff;padding:12px 22px;border-radius:30px;font-size:.88rem;z-index:300;opacity:0;transition:.3s;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.manage-btn{display:flex;align-items:center;gap:14px;width:100%;padding:16px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;text-align:right;font-family:inherit}
+.manage-btn{display:flex;align-items:center;gap:14px;width:100%;padding:16px;background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;text-align:right;font-family:inherit}
 .manage-btn .m-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
 .manage-btn .m-arrow{margin-right:auto;opacity:.4}
 .inline-form{display:none;margin-bottom:16px;padding:14px;background:#f7f9f7;border-radius:var(--radius-sm)}
@@ -75,7 +78,7 @@ input,select,textarea{width:100%;padding:13px 14px;border:1.5px solid var(--bord
 .splash-corner img{width:56px;height:56px;object-fit:contain;display:block}
 .splash-logo{width:min(260px,78vw);height:auto;border-radius:0;background:transparent;overflow:visible;margin:0 auto 14px;line-height:0}
 .splash-logo img{width:100%;height:auto;max-height:28vh;object-fit:contain;display:block;background:transparent}
-.hero-art{width:min(280px,86%);height:auto;margin:0 auto 12px;display:block}
+.hero-art{width:min(320px,92%);height:auto;margin:0 auto 12px;display:block;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}
 .bar{width:min(240px,70vw);height:8px;background:#2a1518;border-radius:99px;overflow:hidden}
 .bar>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#d0123a,#ff8f00);border-radius:99px}
 .splash-actions{width:min(320px,88vw);margin-top:22px;display:none}
