@@ -7,22 +7,26 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#b71c1c" id="meta-theme">
   <meta name="apple-mobile-web-app-title" content="הזמנת תערובת">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="logo.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="logo.svg">
-  <link rel="stylesheet" href="theme.css">
+  <link rel="manifest" href="manifest.json?v=7">
+  <link rel="icon" href="logo-mark-v7.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="logo-mark-v7.svg">
+  <link rel="stylesheet" href="theme.css?v=7">
+  <link rel="stylesheet" href="logo-fix.css?v=7">
   <title>הזמנת תערובת</title>
   <style>
-    .splash-corner{position:absolute;top:calc(16px + env(safe-area-inset-top));right:16px;width:58px;height:58px;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 4px 16px rgba(0,0,0,.35)}
-    .splash-corner img{width:58px;height:58px;object-fit:cover;display:block}
+    .splash-corner{position:absolute;top:calc(16px + env(safe-area-inset-top));right:16px;width:56px;height:56px;background:transparent}
+    .splash-corner img{width:56px;height:56px;object-fit:contain;display:block}
+    .splash-logo{width:min(320px,86vw);height:auto;background:transparent;margin:0 auto 18px}
+    .splash-logo img{width:100%;height:auto;max-height:42vh;object-fit:contain;display:block}
     .hero-art{width:min(280px,86%);height:auto;margin:0 auto 12px;display:block}
     .splash{background:#0b0b0b}
+    .header-icon{background:transparent!important}
   </style>
 </head>
 <body>
   <div class="splash" id="splash">
-    <div class="splash-corner"><img src="logo.svg" alt="לוגו"></div>
-    <div class="splash-logo"><img src="logo.svg" alt="לוגו"></div>
+    <div class="splash-corner"><img src="logo-mark-v7.svg" alt="Itzkovich Group"></div>
+    <div class="splash-logo"><img src="logo-full-v7.svg" alt="Itzkovich Group"></div>
     <h2>הזמנת תערובת</h2>
     <p id="splash-sub">טוען את המערכת...</p>
     <div class="bar" id="splash-bar"><span></span></div>
@@ -38,7 +42,7 @@
   </div>
   <div class="header">
     <div class="header-content">
-      <div class="header-icon"><img src="logo.svg" alt="לוגו"></div>
+      <div class="header-icon" style="background:transparent"><img src="logo-mark-v7.svg" alt="Itzkovich Group" style="object-fit:contain"></div>
       <div>
         <h1>הזמנת תערובת</h1>
         <div class="subtitle">מכון התערובת · הזמנה מהירה</div>
@@ -204,8 +208,8 @@
     <button class="nav-btn" data-screen="history" onclick="showScreen('history')"><span class="icon">📋</span>היסטוריה</button>
     <button class="nav-btn" data-screen="manage" onclick="showScreen('manage')"><span class="icon">⚙️</span>ניהול</button>
   </nav>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
-  <script src="ui.js"></script>
+  <script src="config.js?v=7"></script>
+  <script src="app.js?v=7"></script>
+  <script src="ui.js?v=7"></script>
 </body>
 </html>
