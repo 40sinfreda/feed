@@ -12,9 +12,16 @@
   <link rel="apple-touch-icon" href="logo.svg">
   <link rel="stylesheet" href="theme.css">
   <title>הזמנת תערובת</title>
+  <style>
+    .splash-corner{position:absolute;top:calc(16px + env(safe-area-inset-top));right:16px;width:58px;height:58px;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 4px 16px rgba(0,0,0,.35)}
+    .splash-corner img{width:58px;height:58px;object-fit:cover;display:block}
+    .hero-art{width:min(280px,86%);height:auto;margin:0 auto 12px;display:block}
+    .splash{background:#0b0b0b}
+  </style>
 </head>
 <body>
   <div class="splash" id="splash">
+    <div class="splash-corner"><img src="logo.svg" alt="לוגו"></div>
     <div class="splash-logo"><img src="logo.svg" alt="לוגו"></div>
     <h2>הזמנת תערובת</h2>
     <p id="splash-sub">טוען את המערכת...</p>
@@ -41,7 +48,20 @@
   </div>
   <div id="screen-home" class="screen active">
     <div class="hero-card">
-      <img src="logo.svg" alt="" style="width:72px;height:72px;border-radius:18px;margin-bottom:10px;background:#000">
+      <svg class="hero-art" viewBox="0 0 320 140" aria-hidden="true">
+        <rect x="18" y="58" width="128" height="52" rx="10" fill="#fff" opacity=".95"/>
+        <rect x="146" y="38" width="58" height="72" rx="8" fill="#fff" opacity=".92"/>
+        <circle cx="48" cy="116" r="14" fill="#1a1a1a"/>
+        <circle cx="48" cy="116" r="6" fill="#bbb"/>
+        <circle cx="168" cy="116" r="14" fill="#1a1a1a"/>
+        <circle cx="168" cy="116" r="6" fill="#bbb"/>
+        <rect x="28" y="68" width="36" height="22" rx="4" fill="#ffcc80"/>
+        <rect x="210" y="64" width="36" height="48" rx="6" fill="#f5e6c8"/>
+        <rect x="248" y="52" width="36" height="60" rx="6" fill="#ead7a8"/>
+        <rect x="286" y="72" width="22" height="40" rx="5" fill="#d7c08a"/>
+        <path d="M218 64h20c8 0 12-10 20-10" stroke="#c9a227" stroke-width="3" fill="none"/>
+        <path d="M256 52h18c8 0 10-8 18-8" stroke="#c9a227" stroke-width="3" fill="none"/>
+      </svg>
       <h2>הזמנה חדשה</h2>
       <p>בחירת לקוח, תערובת ומועד אספקה</p>
       <button class="btn" onclick="startNewOrder()">התחל הזמנה חדשה</button>
@@ -162,7 +182,7 @@
       <label>סוג הובלה</label>
       <div class="delivery-grid">
         <button type="button" class="delivery-btn" data-delivery="תפזורת">תפזורת</button>
-        <button type="button" class="delivery-btn" data-delivery="שקים של 25 ק&quot;ג">שקים 25 ק"ג</button>
+        <button type="button" class="delivery-btn" data-delivery="שקים של 25 ק"ג">שקים 25 ק"ג</button>
       </div>
       <label>תוספות</label>
       <div class="additive-list" id="item-additives"></div>
