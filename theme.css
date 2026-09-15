@@ -73,8 +73,8 @@ input,select,textarea{width:100%;padding:13px 14px;border:1.5px solid var(--bord
 .splash.hidden{display:none}
 .splash-corner{position:absolute;top:calc(16px + env(safe-area-inset-top));right:16px;width:56px;height:56px;background:transparent}
 .splash-corner img{width:56px;height:56px;object-fit:contain;display:block}
-.splash-logo{width:min(320px,86vw);height:auto;border-radius:0;background:transparent;overflow:visible;margin:0 auto 18px}
-.splash-logo img{width:100%;height:auto;max-height:42vh;object-fit:contain;display:block}
+.splash-logo{width:min(260px,78vw);height:auto;border-radius:0;background:transparent;overflow:visible;margin:0 auto 14px;line-height:0}
+.splash-logo img{width:100%;height:auto;max-height:28vh;object-fit:contain;display:block;background:transparent}
 .hero-art{width:min(280px,86%);height:auto;margin:0 auto 12px;display:block}
 .bar{width:min(240px,70vw);height:8px;background:#2a1518;border-radius:99px;overflow:hidden}
 .bar>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#d0123a,#ff8f00);border-radius:99px}
