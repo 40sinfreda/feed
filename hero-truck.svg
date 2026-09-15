@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="משאית הובלת תערובת">
+  <defs>
+    <linearGradient id="cab" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ef5350"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </linearGradient>
+    <linearGradient id="hopper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff8ee"/>
+      <stop offset="100%" stop-color="#e8d3a8"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="248" rx="250" ry="14" fill="#000" opacity=".12"/>
+  <path d="M168 168h300l18-78H214l-46 78z" fill="url(#hopper)" stroke="#c9a56a" stroke-width="3"/>
+  <path d="M214 90h272v18H228z" fill="#d7b57a"/>
+  <rect x="248" y="108" width="46" height="36" rx="4" fill="#f3e2b8" stroke="#c9a56a"/>
+  <rect x="308" y="108" width="46" height="36" rx="4" fill="#f3e2b8" stroke="#c9a56a"/>
+  <rect x="368" y="108" width="46" height="36" rx="4" fill="#f3e2b8" stroke="#c9a56a"/>
+  <path d="M430 118h28l12-28h-22z" fill="#c62828"/>
+  <rect x="88" y="126" width="92" height="54" rx="8" fill="url(#cab)"/>
+  <path d="M96 126h56l22 28H96z" fill="#7f1010"/>
+  <rect x="104" y="136" width="44" height="24" rx="4" fill="#bbdefb" opacity=".95"/>
+  <rect x="78" y="176" width="400" height="18" rx="4" fill="#3e2723"/>
+  <circle cx="140" cy="208" r="26" fill="#212121"/>
+  <circle cx="140" cy="208" r="12" fill="#9e9e9e"/>
+  <circle cx="250" cy="208" r="26" fill="#212121"/>
+  <circle cx="250" cy="208" r="12" fill="#9e9e9e"/>
+  <circle cx="430" cy="208" r="26" fill="#212121"/>
+  <circle cx="430" cy="208" r="12" fill="#9e9e9e"/>
+  <rect x="96" y="182" width="16" height="8" rx="2" fill="#ffcc80"/>
+</svg>
