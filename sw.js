@@ -1,4 +1,4 @@
-const CACHE = "feed-app-v8";
+const CACHE = "feed-app-v9";
 const ASSETS = [
   "./",
   "index.html",
@@ -10,6 +10,8 @@ const ASSETS = [
   "logo-full-v8.svg",
   "logo-mark-v8.svg",
   "logo-mark.svg",
+  "hero-truck.svg",
+  "pellets.svg",
   "manifest.json"
 ];
 
