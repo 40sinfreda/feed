@@ -2,7 +2,7 @@
   "name": "הזמנת תערובת",
   "short_name": "הזמנת תערובת",
   "description": "הזמנות תערובת למכון",
-  "start_url": "./",
+  "start_url": "./?v=7",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -12,15 +12,15 @@
   "lang": "he",
   "icons": [
     {
-      "src": "logo-mark.svg",
+      "src": "logo-mark-v7.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "logo-mark.svg",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ]
