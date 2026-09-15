@@ -1,0 +1,6 @@
+.header-icon{background:transparent!important}
+.header-icon img{object-fit:contain!important}
+.splash-corner{background:transparent!important;box-shadow:none!important}
+.splash-corner img{object-fit:contain!important}
+.splash-logo{width:240px!important;height:180px!important;border-radius:0!important;background:transparent!important;overflow:visible!important}
+.splash-logo img{width:240px!important;height:180px!important;object-fit:contain!important}
