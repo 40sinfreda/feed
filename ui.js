@@ -33,13 +33,23 @@
       origSetConn(ok, applyConnLabel(ok, label));
     };
   }
-  if (typeof setConn === "function") setConn(false, "מתחבר לשרת");
-  else {
+  (function syncConnNow() {
     const lab = document.getElementById("conn-label");
-    if (lab && (/טוען|שיטס/.test(lab.textContent || "") || !lab.textContent)) {
-      lab.textContent = "מתחבר לשרת";
+    const txt = (lab && lab.textContent) || "";
+    if (typeof usingSheets !== "undefined" && usingSheets) {
+      if (typeof setConn === "function") setConn(true, "Online");
+      else if (lab) lab.textContent = "Online";
+      return;
     }
-  }
+    if (/מחובר לשיטס|מחובר/.test(txt)) {
+      if (lab) lab.textContent = "Online";
+      return;
+    }
+    if (!txt || /טוען|שיטס|מכשיר/.test(txt)) {
+      if (typeof setConn === "function") setConn(false, "מתחבר לשרת");
+      else if (lab) lab.textContent = "מתחבר לשרת";
+    }
+  })();
 
   (function applyOfficialLogo() {
     if (!document.querySelector('link[href*="logo-fix.css"]')) {
