@@ -1,6 +1,6 @@
 (function () {
   const LS_THEME = "feed_theme";
-  const ASSET_V = "8";
+  const ASSET_V = "10";
   let deferredPrompt = null;
 
   function currentTheme() {
@@ -21,6 +21,25 @@
     if (typeof showToast === "function") showToast("צבע עודכן");
   };
   applyTheme(currentTheme());
+
+  function applyConnLabel(ok, label) {
+    if (ok) return "Online";
+    if (!label || /טוען|שיטס|מחובר|מכשיר/.test(label)) return "מתחבר לשרת";
+    return label;
+  }
+  if (typeof setConn === "function") {
+    const origSetConn = setConn;
+    window.setConn = function (ok, label) {
+      origSetConn(ok, applyConnLabel(ok, label));
+    };
+  }
+  if (typeof setConn === "function") setConn(false, "מתחבר לשרת");
+  else {
+    const lab = document.getElementById("conn-label");
+    if (lab && (/טוען|שיטס/.test(lab.textContent || "") || !lab.textContent)) {
+      lab.textContent = "מתחבר לשרת";
+    }
+  }
 
   (function applyOfficialLogo() {
     if (!document.querySelector('link[href*="logo-fix.css"]')) {
