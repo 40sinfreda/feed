@@ -1,5 +1,5 @@
-const CACHE = "feed-app-v4";
-const ASSETS = ["./","index.html","app.js","config.js","logo.svg","manifest.json"];
+const CACHE = "feed-app-v6";
+const ASSETS = ["./","index.html","app.js","ui.js","config.js","theme.css","logo.svg","manifest.json"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
