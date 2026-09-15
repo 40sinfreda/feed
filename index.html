@@ -10,8 +10,8 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="logo.svg">
-  <title>הזמנת תערובת</title>
   <link rel="stylesheet" href="theme.css">
+  <title>הזמנת תערובת</title>
 </head>
 <body>
   <div class="splash" id="splash">
@@ -25,7 +25,165 @@
       <div class="ios-hint" id="ios-hint">באייפון: לחץ שיתוף ← «הוסף למסך הבית»</div>
     </div>
   </div>
-  <div id="app-root"></div>
+  <div class="loading-overlay hidden" id="loading">
+    <div class="spinner"></div>
+    <div style="font-size:0.9rem;color:#5a5a5a;">טוען הזמנות...</div>
+  </div>
+  <div class="header">
+    <div class="header-content">
+      <div class="header-icon"><img src="logo.svg" alt="לוגו"></div>
+      <div>
+        <h1>הזמנת תערובת</h1>
+        <div class="subtitle">מכון התערובת · הזמנה מהירה</div>
+        <div class="online-badge"><span class="online-dot" id="conn-dot"></span> <span id="conn-label">טוען...</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="screen-home" class="screen active">
+    <div class="hero-card">
+      <img src="logo.svg" alt="" style="width:72px;height:72px;border-radius:18px;margin-bottom:10px;background:#000">
+      <h2>הזמנה חדשה</h2>
+      <p>בחירת לקוח, תערובת ומועד אספקה</p>
+      <button class="btn" onclick="startNewOrder()">התחל הזמנה חדשה</button>
+    </div>
+    <div class="card">
+      <div class="card-title">הזמנות אחרונות</div>
+      <div id="home-recent-orders"></div>
+    </div>
+  </div>
+  <div id="screen-order" class="screen">
+    <div class="steps" id="order-steps">
+      <div class="step active" data-step="1"></div>
+      <div class="step" data-step="2"></div>
+      <div class="step" data-step="3"></div>
+      <div class="step" data-step="4"></div>
+    </div>
+    <div id="order-step-1" class="order-step">
+      <div class="card">
+        <div class="card-title">תאריך ומועד אספקה</div>
+        <label>תאריך אספקה</label>
+        <input type="date" id="delivery-date">
+        <label>מועד אספקה</label>
+        <div class="delivery-grid">
+          <button type="button" class="time-slot-btn" data-slot="אספקה מוקדם בבוקר">מוקדם בבוקר</button>
+          <button type="button" class="time-slot-btn" data-slot="אספקה אחרי 10:00">אחרי 10:00</button>
+        </div>
+        <button class="btn btn-primary" onclick="goToOrderStep(2)">המשך</button>
+      </div>
+    </div>
+    <div id="order-step-2" class="order-step" style="display:none;">
+      <div class="card">
+        <div class="card-title">בחירת לקוח</div>
+        <label>לקוח קיים</label>
+        <select id="customer-select"><option value="">-- בחר לקוח --</option></select>
+        <button class="btn btn-secondary" onclick="showAddCustomerModal()">+ הוסף לקוח חדש</button>
+        <div class="btn-group">
+          <button class="btn btn-outline" onclick="goToOrderStep(1)">חזרה</button>
+          <button class="btn btn-primary" onclick="goToOrderStep(3)">המשך</button>
+        </div>
+      </div>
+    </div>
+    <div id="order-step-3" class="order-step" style="display:none;">
+      <div class="card">
+        <div class="card-title">פריטי ההזמנה</div>
+        <div id="order-items-list"></div>
+        <button class="btn btn-secondary" onclick="showAddItemModal()">+ הוסף תערובת</button>
+        <div class="btn-group">
+          <button class="btn btn-outline" onclick="goToOrderStep(2)">חזרה</button>
+          <button class="btn btn-primary" onclick="goToOrderStep(4)">המשך</button>
+        </div>
+      </div>
+    </div>
+    <div id="order-step-4" class="order-step" style="display:none;">
+      <div class="card">
+        <div class="card-title">סיכום ושליחה</div>
+        <div class="wa-preview" id="wa-preview"></div>
+        <button class="btn btn-accent" onclick="copyOrderMessage()" style="margin-bottom:10px;">העתק הודעה</button>
+        <button class="btn btn-secondary" style="margin-bottom:10px;" onclick="openWhatsAppGroup()">פתח את קבוצת הוואטסאפ</button>
+        <button class="btn btn-primary" onclick="saveOrderOnly()">שמור בהיסטוריה</button>
+        <button class="btn btn-outline" style="margin-top:10px;" onclick="goToOrderStep(3)">חזרה</button>
+      </div>
+    </div>
+  </div>
+  <div id="screen-history" class="screen">
+    <div class="card">
+      <div class="card-title">היסטוריית הזמנות</div>
+      <div id="history-list"></div>
+    </div>
+  </div>
+  <div id="screen-manage" class="screen">
+    <div class="section-label">ניהול מערכת</div>
+    <button class="manage-btn" onclick="showManageSection('customers')">
+      <div class="m-icon" style="background:#e3f2fd;">👥</div>
+      <div><div class="m-title">לקוחות</div><div class="m-desc">הוספה ועריכה</div></div>
+      <div class="m-arrow">←</div>
+    </button>
+    <button class="manage-btn" onclick="showManageSection('mixtures')">
+      <div class="m-icon" style="background:#e8f5e9;">🥣</div>
+      <div><div class="m-title">תערובות</div><div class="m-desc">סוגי תערובות</div></div>
+      <div class="m-arrow">←</div>
+    </button>
+    <button class="manage-btn" onclick="showManageSection('additives')">
+      <div class="m-icon" style="background:#fff3e0;">➕</div>
+      <div><div class="m-title">תוספות</div><div class="m-desc">תוספות ומינונים</div></div>
+      <div class="m-arrow">←</div>
+    </button>
+    <button class="manage-btn" onclick="showManageSection('settings')">
+      <div class="m-icon" style="background:#f3e5f5;">🔧</div>
+      <div><div class="m-title">הגדרות</div><div class="m-desc">צבעים, וואטסאפ ושיטס</div></div>
+      <div class="m-arrow">←</div>
+    </button>
+    <div id="manage-content" style="margin-top:8px;"></div>
+  </div>
+  <div class="modal-overlay" id="modal-customer">
+    <div class="modal">
+      <div class="modal-header"><h3>הוספת לקוח חדש</h3><button class="modal-close" onclick="closeModal('modal-customer')">×</button></div>
+      <label>שם הלקוח</label>
+      <input type="text" id="new-customer-name" placeholder="שם">
+      <label>מספר לקוח</label>
+      <input type="text" id="new-customer-number" placeholder="5257" dir="ltr" style="text-align:left;">
+      <button class="btn btn-primary" onclick="addCustomer()">שמור לקוח</button>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modal-item">
+    <div class="modal">
+      <div class="modal-header"><h3>הוספת תערובת</h3><button class="modal-close" onclick="closeModal('modal-item')">×</button></div>
+      <label>סוג תערובת</label>
+      <select id="item-mixture"></select>
+      <label>כמות (ק"ג)</label>
+      <div class="qty-grid">
+        <button type="button" class="qty-btn" data-qty="2000">2,000</button>
+        <button type="button" class="qty-btn" data-qty="4000">4,000</button>
+        <button type="button" class="qty-btn" data-qty="6000">6,000</button>
+        <button type="button" class="qty-btn" data-qty="8000">8,000</button>
+        <button type="button" class="qty-btn" data-qty="10000">10,000</button>
+        <button type="button" class="qty-btn" data-qty="12000">12,000</button>
+      </div>
+      <label>סוג הובלה</label>
+      <div class="delivery-grid">
+        <button type="button" class="delivery-btn" data-delivery="תפזורת">תפזורת</button>
+        <button type="button" class="delivery-btn" data-delivery="שקים של 25 ק&quot;ג">שקים 25 ק"ג</button>
+      </div>
+      <label>תוספות</label>
+      <div class="additive-list" id="item-additives"></div>
+      <button class="btn btn-primary" onclick="addItemToOrder()">הוסף להזמנה</button>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modal-view-order">
+    <div class="modal">
+      <div class="modal-header"><h3>פרטי הזמנה</h3><button class="modal-close" onclick="closeModal('modal-view-order')">×</button></div>
+      <div class="wa-preview" id="view-order-preview"></div>
+      <button class="btn btn-accent" onclick="copyViewOrderMessage()" style="margin-bottom:10px;">העתק הודעה</button>
+      <button class="btn btn-secondary" onclick="openWhatsAppGroup()">פתח את הקבוצה</button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <nav class="nav">
+    <button class="nav-btn active" data-screen="home" onclick="showScreen('home')"><span class="icon">🏠</span>ראשי</button>
+    <button class="nav-btn" data-screen="order" onclick="startNewOrder()"><span class="icon">➕</span>הזמנה</button>
+    <button class="nav-btn" data-screen="history" onclick="showScreen('history')"><span class="icon">📋</span>היסטוריה</button>
+    <button class="nav-btn" data-screen="manage" onclick="showScreen('manage')"><span class="icon">⚙️</span>ניהול</button>
+  </nav>
   <script src="config.js"></script>
   <script src="app.js"></script>
   <script src="ui.js"></script>
