@@ -1,0 +1,21 @@
+{
+  "name": "הזמנת תערובת",
+  "short_name": "תערובת",
+  "description": "הזמנות תערובת למכון",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#11080a",
+  "theme_color": "#b71c1c",
+  "dir": "rtl",
+  "lang": "he",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
