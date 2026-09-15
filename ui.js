@@ -21,6 +21,25 @@
   };
   applyTheme(currentTheme());
 
+  (function applyOfficialLogo() {
+    if (!document.querySelector('link[href="logo-fix.css"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "logo-fix.css";
+      document.head.appendChild(link);
+    }
+    document.querySelectorAll(".header-icon img, .splash-corner img").forEach(function (img) {
+      img.src = "logo-mark.svg";
+      img.style.objectFit = "contain";
+      img.alt = "Itzkovich Group";
+    });
+    document.querySelectorAll(".splash-logo img").forEach(function (img) {
+      img.src = "logo.svg";
+      img.style.objectFit = "contain";
+      img.alt = "Itzkovich Group";
+    });
+  })();
+
   window.isInstalled = function () {
     return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
   };
