@@ -8,6 +8,7 @@
   height:42px!important;
   object-fit:contain!important;
   display:block!important;
+  background:transparent!important;
 }
 .splash-corner{
   background:transparent!important;
@@ -20,20 +21,23 @@
   width:56px!important;
   height:56px!important;
   object-fit:contain!important;
+  background:transparent!important;
 }
 .splash-logo{
-  width:min(320px,86vw)!important;
+  width:min(260px,78vw)!important;
   height:auto!important;
   max-height:none!important;
   border-radius:0!important;
   background:transparent!important;
   overflow:visible!important;
-  margin:0 auto 18px!important;
+  margin:0 auto 14px!important;
+  line-height:0!important;
 }
 .splash-logo img{
   width:100%!important;
   height:auto!important;
-  max-height:42vh!important;
+  max-height:28vh!important;
   object-fit:contain!important;
   display:block!important;
+  background:transparent!important;
 }

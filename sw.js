@@ -1,4 +1,4 @@
-const CACHE = "feed-app-v7";
+const CACHE = "feed-app-v8";
 const ASSETS = [
   "./",
   "index.html",
@@ -7,16 +7,19 @@ const ASSETS = [
   "config.js",
   "theme.css",
   "logo-fix.css",
-  "logo.svg",
-  "logo-full-v7.svg",
+  "logo-full-v8.svg",
+  "logo-mark-v8.svg",
   "logo-mark.svg",
-  "logo-mark-v7.svg",
   "manifest.json"
 ];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE).then((c) =>
+      Promise.all(
+        ASSETS.map((url) => c.add(url).catch(() => null))
+      )
+    ).then(() => self.skipWaiting())
   );
 });
 
