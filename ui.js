@@ -1,6 +1,6 @@
 (function () {
   const LS_THEME = "feed_theme";
-  const ASSET_V = "7";
+  const ASSET_V = "8";
   let deferredPrompt = null;
 
   function currentTheme() {
@@ -30,15 +30,18 @@
       document.head.appendChild(link);
     }
     document.querySelectorAll(".header-icon img, .splash-corner img").forEach(function (img) {
-      img.src = "logo-mark-v7.svg?v=" + ASSET_V;
+      img.src = "logo-mark-v8.svg?v=" + ASSET_V;
       img.style.objectFit = "contain";
+      img.style.background = "transparent";
       img.alt = "Itzkovich Group";
     });
     document.querySelectorAll(".splash-logo img").forEach(function (img) {
-      img.src = "logo-full-v7.svg?v=" + ASSET_V;
+      if (img.src && img.src.indexOf("data:image") === 0) return;
+      img.src = "logo-full-v8.svg?v=" + ASSET_V;
       img.style.width = "100%";
       img.style.height = "auto";
       img.style.objectFit = "contain";
+      img.style.background = "transparent";
       img.alt = "Itzkovich Group";
     });
   })();
@@ -133,7 +136,12 @@
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.getRegistrations().then(function (regs) {
-      return Promise.all(regs.map(function (r) { return r.update(); }));
+      return Promise.all(regs.map(function (r) { return r.unregister(); }));
+    }).then(function () {
+      if (!window.caches) return;
+      return caches.keys().then(function (keys) {
+        return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+      });
     }).then(function () {
       return navigator.serviceWorker.register("./sw.js?v=" + ASSET_V);
     }).catch(function () {});
