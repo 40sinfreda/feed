@@ -112,5 +112,5 @@
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js").catch(function () {});
   }
-  startSplash();
+  if (!window.__splashStarted) { window.__splashStarted = true; startSplash(); }
 })();
