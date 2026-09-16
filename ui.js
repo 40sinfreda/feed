@@ -1,6 +1,6 @@
 (function () {
   const LS_THEME = "feed_theme";
-  const ASSET_V = "10";
+  const ASSET_V = "11";
   let deferredPrompt = null;
 
   function currentTheme() {
@@ -50,6 +50,8 @@
       else if (lab) lab.textContent = "מתחבר לשרת";
     }
   })();
+
+  window.saveSheetsCfg = function () {};
 
   (function applyOfficialLogo() {
     if (!document.querySelector('link[href*="logo-fix.css"]')) {
@@ -149,7 +151,14 @@
       orig(section);
       if (section !== "settings") return;
       const c = document.getElementById("manage-content");
-      if (!c || c.querySelector(".theme-row")) return;
+      if (!c) return;
+      Array.from(c.querySelectorAll(".card")).forEach(function (card) {
+        const t = card.textContent || "";
+        if (t.indexOf("גוגל שיטס") !== -1 || t.indexOf("Web App") !== -1 || t.indexOf("חבר לשיטס") !== -1) {
+          card.remove();
+        }
+      });
+      if (c.querySelector(".theme-row")) return;
       const th = currentTheme();
       const box = document.createElement("div");
       box.className = "card";
